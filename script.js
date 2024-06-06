@@ -28,13 +28,22 @@ let cipherShifterAtZero = [
   "y",
   "z",
 ];
+let cipherShifter;
+let indexCalculator;
+// if (shiftingPosition > 0 && shiftingPosition <= 25) {
+// } else if (shiftingPosition < 0 && shiftingPosition >= -25) {
+//   console.log(" down to -25");
+// } else if (shiftingPosition === 0) {
+//   console.log(" its a zero");
+// }
 
-if (shiftingPosition > 0 && shiftingPosition <= 25) {
-  console.log(" up to 25");
-} else if (shiftingPosition < 0 && shiftingPosition >= -25) {
-  console.log(" down to -25");
-} else if (shiftingPosition === 0) {
-  console.log(" its a zero");
-}
+//Positive  Shift
+cipherShifter = cipherShifterAtZero
+  .slice(shiftingPosition, 26)
+  .concat(cipherShifterAtZero.slice(0, shiftingPosition));
 
-let cipherShifter = cipherShifterAtZero.slice(0, -2);
+//Negative Shift
+indexCalculator = 26 + shiftingPosition;
+cipherShifter = cipherShifterAtZero
+  .slice(indexCalculator, 26)
+  .concat(cipherShifterAtZero.slice(0, indexCalculator));
