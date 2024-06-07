@@ -1,4 +1,4 @@
-//Declaring variables, arrays, and assigning inputs
+// Declaring variables, arrays, and assigning inputs
 const colors = require("colors");
 const phrase = process.argv[2].toLowerCase();
 const shiftingPosition = Number(process.argv[3]);
@@ -38,7 +38,7 @@ let wordLettersEncrypted = [];
 const wordsEncrypted = [];
 let phraseEncrypted = [];
 
-// Functions
+// Function to convert normal letters to encrypted letters
 const shiftPhrase = function () {
   for (let j = 0; j < words.length; j++) {
     wordLetters = words[j].split("");
@@ -168,27 +168,30 @@ const shiftPhrase = function () {
   return console.log("The encryption is: ".green, phraseEncrypted.bgGreen);
 };
 
-//Positive  Shift
+// Positive Shift
 if (shiftingPosition > 0 && shiftingPosition <= 25) {
   cipherShifter = cipherShifterAtZero
     .slice(shiftingPosition, 26)
     .concat(cipherShifterAtZero.slice(0, shiftingPosition));
   shiftPhrase();
-
-  //Negative Shift
-} else if (shiftingPosition < 0 && shiftingPosition >= -25) {
+}
+// Negative Shift
+else if (shiftingPosition < 0 && shiftingPosition >= -25) {
   indexCalculator = 26 + shiftingPosition;
   cipherShifter = cipherShifterAtZero
     .slice(indexCalculator, 26)
     .concat(cipherShifterAtZero.slice(0, indexCalculator));
   shiftPhrase();
-} else if (shiftingPosition === 0) {
+}
+// No Shift at Zero
+else if (shiftingPosition === 0) {
   console.log(
-    " At position zero, there is no encryption; the text remains unchanged.\n"
-      .red,
-    phrase.bgGreen
+    " At position zero, there is no encryption; the text remains unchanged."
+      .bgRed
   );
-} else {
+}
+// Shift Out of the Range or not a number
+else {
   console.log(`  ${
     "The shift number is either not numeric or out of range.".bgRed
   }
