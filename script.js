@@ -1,6 +1,6 @@
+const colors = require("colors");
 const phrase = process.argv[2].toLowerCase();
 const shiftingPosition = Number(process.argv[3]);
-
 let cipherShifterAtZero = [
   "a",
   "b",
@@ -152,9 +152,14 @@ if (shiftingPosition > 0 && shiftingPosition <= 25) {
           wordLettersEncrypted.push(wordLetters[i]);
           break;
         default:
-          console.log(`Encryption isn't possible; one of the characters wasn't an English alphabetic character.
-          Caesar Cipher encryption is only valid for English alphabetic characters.
-          Please use the following format: node script.js "Lorem ipsum dolor sit" 3`);
+          console.log(`${"Encryption isn't possible;".bgRed}
+          one of the characters wasn't an English alphabetic character.
+          Caesar Cipher encryption is only valid for ${
+            "English alphabetic characters.".green
+          }
+          Please use the following format: ${
+            'node scriptName.js "Lorem ipsum dolor sit" 3'.green
+          }`);
           return;
       }
     }
@@ -162,7 +167,7 @@ if (shiftingPosition > 0 && shiftingPosition <= 25) {
     wordLettersEncrypted = [];
   }
   phraseEncrypted = wordsEncrypted.join(" ");
-  console.log(phraseEncrypted);
+  console.log("The encryption is: ".green, phraseEncrypted.bgGreen);
 } else if (shiftingPosition < 0 && shiftingPosition >= -25) {
   //Negative Shift
   indexCalculator = 26 + shiftingPosition;
@@ -279,7 +284,14 @@ if (shiftingPosition > 0 && shiftingPosition <= 25) {
           wordLettersEncrypted.push(wordLetters[i]);
           break;
         default:
-          console.log("incrption isnt possible");
+          console.log(`${"Encryption isn't possible;".bgRed}
+          one of the characters wasn't an English alphabetic character.
+          Caesar Cipher encryption is only valid for ${
+            "English alphabetic characters.".green
+          }
+          Please use the following format: ${
+            'node scriptName.js "Lorem ipsum dolor sit" 3'.green
+          }`);
           return;
       }
     }
@@ -287,15 +299,23 @@ if (shiftingPosition > 0 && shiftingPosition <= 25) {
     wordLettersEncrypted = [];
   }
   phraseEncrypted = wordsEncrypted.join(" ");
-  console.log(phraseEncrypted);
+  console.log("The encryption is: ".green, phraseEncrypted.bgGreen);
 } else if (shiftingPosition === 0) {
-  console.log(phrase);
+  console.log(
+    " At position zero, there is no encryption; the text remains unchanged.\n"
+      .red,
+    phrase.bgGreen
+  );
 } else {
-  console.log(`Your shift number was ${shiftingPosition}.
-  This shift number is incorrect or does not exist.
+  console.log(`  Your shift number was ${JSON.stringify(shiftingPosition).red}.
+  ${
+    "This shift number is either incorrect or does not fall within the range."
+      .bgRed
+  }
   Please re-enter the shift number in the following format:
-  node script.js "Lorem ipsum dolor sit" 3
-  The shift number range is from 0 to 25.
-  Use a positive number to shift to the right 
-  and a negative number to shift to the left.`);
+  ${'node scriptName.js "Lorem ipsum dolor sit" 3'.green}
+
+  The shift number range is from ${"0".green} to ${"25".green}.
+  Use a ${"positive".green} number to shift to the ${"right".green} 
+  and a ${"negative".red} number to shift to the ${"left".red}.`);
 }
